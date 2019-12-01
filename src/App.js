@@ -5,6 +5,7 @@ import Bookshelf from './components/Bookshelf'
 
 class BooksApp extends React.Component {
   state = {
+    loading: true,
     books: [],
     /**
      * TODO: Instead of using this state variable to keep track of which page
@@ -18,7 +19,10 @@ class BooksApp extends React.Component {
   componentDidMount() {
     BooksAPI.getAll().then((books) => {
       this.setState(() => (
-        {books}
+        {
+          books,
+          loading: false
+        }
       ))
     })
   }
@@ -49,6 +53,7 @@ class BooksApp extends React.Component {
           </div>
         ) : (
           <Bookshelf
+            loading={this.state.loading}
             books={this.state.books}
           />
         )}
