@@ -2,7 +2,8 @@ import React from 'react'
 import PropTypes from 'prop-types'
 
 const Book = (props) => {
-  const { title, authors, imageUrl } = props
+  const { title, authors, imageLinks } = props
+  const imageUrl = imageLinks ? imageLinks.thumbnail : ''
 
   return (
     <div className="book">
@@ -20,7 +21,7 @@ const Book = (props) => {
       </div>
       <div className="book-title">{ title }</div>
       <div className="book-authors">
-        {authors.map(author => (
+        {authors && !!authors.length && authors.map(author => (
           <p key={author}>{author}</p>
         ))}
       </div>
@@ -30,8 +31,8 @@ const Book = (props) => {
 
 Book.propTypes = {
   title: PropTypes.string.isRequired,
-  authors: PropTypes.array.isRequired,
-  imageUrl: PropTypes.string.isRequired
+  authors: PropTypes.array,
+  imageLinks: PropTypes.object
 }
 
 export default Book

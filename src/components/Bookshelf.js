@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import { Link } from 'react-router-dom'
 import PropTypes from 'prop-types'
 import Book from './Book'
 
@@ -67,7 +68,7 @@ class Bookshelf extends Component {
                           <Book
                             title={book.title}
                             authors={book.authors}
-                            imageUrl={book.imageLinks.thumbnail}
+                            imageLinks={book.imageLinks}
                           />
                         </li>
                       ))}
@@ -81,8 +82,11 @@ class Bookshelf extends Component {
             <div>There are no books</div>
           ) }
         </div>
-        <div className="open-search">
-          <button onClick={() => this.setState({ showSearchPage: true })}>Add a book</button>
+        <div className="cta-buttons">
+          <Link to="/search">
+            <button className="search">Search</button>
+          </Link>
+          <button className="add" onClick={() => this.setState({ showSearchPage: true })}>Add a book</button>
         </div>
       </div>
     )
