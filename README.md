@@ -35,6 +35,12 @@ To get started developing right away:
 
 Remember that good React design practice is to create new JS files for each component and use import/require statements to include them where they are needed.
 
+## Client
+
+After starting the development server, visit http://localhost:3000/. All your books are listed.
+
+Visit http://localhost:3000/search to search for books and add to MyReads
+
 ## Backend Server
 
 To simplify your development process, we've provided a backend server for you to develop against. The provided file [`BooksAPI.js`](src/BooksAPI.js) contains the methods you will need to perform necessary operations on the backend:
