@@ -1,5 +1,5 @@
 import React from 'react'
-import { BrowserRouter, Route } from 'react-router-dom'
+import { BrowserRouter, Route, Link } from 'react-router-dom'
 import * as BooksAPI from './BooksAPI'
 import './App.css'
 import Bookshelf from './components/Bookshelf'
@@ -76,6 +76,14 @@ class BooksApp extends React.Component {
               onSearch={this.searchBooks}
               onUpdate={this.updateBook}
             />
+          )} />
+
+          <Route render={() => (
+            <div className="status-text">
+              <p>Page Not Found</p>
+
+              <Link to="/">Return Home</Link>
+            </div>
           )} />
         </div>
       </BrowserRouter>
