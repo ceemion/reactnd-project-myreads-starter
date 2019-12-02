@@ -1,5 +1,5 @@
 import React from 'react'
-import { BrowserRouter, Route, Link } from 'react-router-dom'
+import { BrowserRouter, Switch, Route, Link } from 'react-router-dom'
 import * as BooksAPI from './BooksAPI'
 import './App.css'
 import Bookshelf from './components/Bookshelf'
@@ -59,32 +59,34 @@ class BooksApp extends React.Component {
     return (
       <BrowserRouter>
         <div className="app">
-          <Route exact path="/" render={() => (
-            <Bookshelf
-              loading={this.state.loading}
-              books={this.state.books}
-              onUpdate={this.updateBook}
-            />
-          )} />
+          <Switch>
+            <Route exact path="/" render={() => (
+              <Bookshelf
+                loading={this.state.loading}
+                books={this.state.books}
+                onUpdate={this.updateBook}
+              />
+            )} />
 
-          <Route path="/search" render={( {history} ) => (
-            <Search
-              history={history}
-              searching={this.state.searching}
-              result={this.state.searchResult}
-              error={this.state.searchError}
-              onSearch={this.searchBooks}
-              onUpdate={this.updateBook}
-            />
-          )} />
+            <Route path="/search" render={( {history} ) => (
+              <Search
+                history={history}
+                searching={this.state.searching}
+                result={this.state.searchResult}
+                error={this.state.searchError}
+                onSearch={this.searchBooks}
+                onUpdate={this.updateBook}
+              />
+            )} />
 
-          <Route render={() => (
-            <div className="status-text">
-              <p>Page Not Found</p>
+            <Route render={() => (
+              <div className="status-text">
+                <p>Page Not Found</p>
 
-              <Link to="/">Return Home</Link>
-            </div>
-          )} />
+                <Link to="/">Return Home</Link>
+              </div>
+            )} />
+          </Switch>
         </div>
       </BrowserRouter>
     )
