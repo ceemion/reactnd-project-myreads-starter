@@ -10,7 +10,8 @@ class BooksApp extends React.Component {
     loading: true,
     searching: false,
     books: [],
-    searchResult: []
+    searchResult: [],
+    searchError: ''
   }
 
   componentDidMount() {
@@ -28,11 +29,18 @@ class BooksApp extends React.Component {
     }))
 
     BooksAPI.search(query).then(result => {
-      console.log(result)
-      this.setState(() => ({
-        searchResult: result,
-        searching: false
-      }))
+      if (result.error) {
+        this.setState(() => ({
+          searchError: `No books found for '${query}'.`,
+          searching: false
+        }))
+      } else {
+        this.setState(() => ({
+          searchResult: result,
+          searchError: '',
+          searching: false
+        }))
+      }
     })
   }
 
@@ -59,6 +67,7 @@ class BooksApp extends React.Component {
               history={history}
               searching={this.state.searching}
               result={this.state.searchResult}
+              error={this.state.searchError}
               onSearch={this.searchBooks}
               onUpdate={this.updateBook}
             />

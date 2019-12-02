@@ -7,6 +7,7 @@ class Search extends Component {
     history: PropTypes.object.isRequired,
     searching: PropTypes.bool.isRequired,
     result: PropTypes.array.isRequired,
+    error: PropTypes.string.isRequired,
     onSearch: PropTypes.func.isRequired,
     onUpdate: PropTypes.func.isRequired
   }
@@ -14,13 +15,13 @@ class Search extends Component {
   handleSearch = event => {
     const query = event.target.value
 
-    if (this.props.onSearch) {
+    if (query && this.props.onSearch) {
       this.props.onSearch(query)
     }
   }
 
   render() {
-    const { history, searching, result, onUpdate } = this.props
+    const { history, searching, result, error, onUpdate } = this.props
 
     return (
       <div className="search-books">
@@ -43,16 +44,20 @@ class Search extends Component {
           { searching ? (
             <div className="status-text">Searching...</div>
           ) : (
-            <ol className="books-grid">
-              { result && !!result.length && result.map(book => (
-                <li key={book.id}>
-                  <Book
-                    book={book}
-                    onUpdate={onUpdate}
-                  />
-                </li>
-              )) }
-            </ol>
+            error ? (
+              <div className="status-text">{ error }</div>
+            ) : (
+              <ol className="books-grid">
+                { result && !!result.length && result.map(book => (
+                  <li key={book.id}>
+                    <Book
+                      book={book}
+                      onUpdate={onUpdate}
+                    />
+                  </li>
+                )) }
+              </ol>
+            )
           )}
         </div>
       </div>
