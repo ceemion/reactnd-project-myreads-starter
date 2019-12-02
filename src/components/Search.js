@@ -6,7 +6,8 @@ class Search extends Component {
   static propTypes = {
     history: PropTypes.object.isRequired,
     result: PropTypes.array.isRequired,
-    onSearch: PropTypes.func.isRequired
+    onSearch: PropTypes.func.isRequired,
+    onUpdate: PropTypes.func.isRequired
   }
 
   handleSearch = event => {
@@ -18,7 +19,7 @@ class Search extends Component {
   }
 
   render() {
-    const { history, result } = this.props
+    const { history, result, onUpdate } = this.props
 
     return (
       <div className="search-books">
@@ -42,9 +43,8 @@ class Search extends Component {
             { result && !!result.length && result.map(book => (
               <li key={book.id}>
                 <Book
-                  title={book.title}
-                  authors={book.authors}
-                  imageLinks={book.imageLinks}
+                  book={book}
+                  onUpdate={onUpdate}
                 />
               </li>
             )) }

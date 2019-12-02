@@ -6,7 +6,8 @@ import Book from './Book'
 class Bookshelf extends Component {
   static propTypes = {
     loading: PropTypes.bool.isRequired,
-    books: PropTypes.array.isRequired
+    books: PropTypes.array.isRequired,
+    onUpdate: PropTypes.func.isRequired
   }
 
   state = {

@@ -30,6 +30,12 @@ class BooksApp extends React.Component {
     })
   }
 
+  updateBook = (book, shelf) => {
+    BooksAPI.update(book, shelf).then(response => {
+      console.log(response)
+    })
+  }
+
   render() {
     return (
       <BrowserRouter>
@@ -38,6 +44,7 @@ class BooksApp extends React.Component {
             <Bookshelf
               loading={this.state.loading}
               books={this.state.books}
+              onUpdate={this.updateBook}
             />
           )} />
 
@@ -46,6 +53,7 @@ class BooksApp extends React.Component {
               history={history}
               result={this.state.searchResult}
               onSearch={this.searchBooks}
+              onUpdate={this.updateBook}
             />
           )} />
         </div>
