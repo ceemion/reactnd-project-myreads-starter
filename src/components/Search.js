@@ -15,7 +15,7 @@ class Search extends Component {
   handleSearch = event => {
     const query = event.target.value
 
-    if (query && this.props.onSearch) {
+    if (this.props.onSearch) {
       this.props.onSearch(query)
     }
   }

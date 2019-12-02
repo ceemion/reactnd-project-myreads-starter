@@ -28,24 +28,31 @@ class BooksApp extends React.Component {
   }
 
   searchBooks = query => {
-    this.setState(() => ({
-      searching: true
-    }))
+    if (!query) {
+      this.setState(() => ({
+        searchResult: [],
+        searchError: ''
+      }))
+    } else {
+      this.setState(() => ({
+        searching: true
+      }))
 
-    BooksAPI.search(query).then(result => {
-      if (result.error) {
-        this.setState(() => ({
-          searchError: `No books found for '${query}'.`,
-          searching: false
-        }))
-      } else {
-        this.setState(() => ({
-          searchResult: result,
-          searchError: '',
-          searching: false
-        }))
-      }
-    })
+      BooksAPI.search(query).then(result => {
+        if (result.error) {
+          this.setState(() => ({
+            searchError: `No books found for '${query}'.`,
+            searching: false
+          }))
+        } else {
+          this.setState(() => ({
+            searchResult: result,
+            searchError: '',
+            searching: false
+          }))
+        }
+      })
+    }
   }
 
   updateBook = (book, shelf) => {
