@@ -40,54 +40,52 @@ class Bookshelf extends Component {
 
   render() {
     const { shelves } = this.state
-    const { loading, books } = this.props
-
-    if (loading) {
-      return (
-        <div>Fetching books...</div>
-      )
-    }
+    const { loading, books, onUpdate } = this.props
 
     return (
       <div className="list-books">
         <div className="list-books-title">
           <h1>MyReads</h1>
         </div>
-        <div className="list-books-content">
-          { !!books.length ? (
-            <div>
-              { this.orderBooks(books, shelves).map(shelf => (
-                <div key={shelf.shelf} className="bookshelf">
-                  <h2 className="bookshelf-title">
-                    { this.shelfTitle(shelf.shelf) }
-                  </h2>
 
-                  <div className="bookshelf-books">
-                    <ol className="books-grid">
-                      { shelf.books.map(book => (
-                        <li key={book.id}>
-                          <Book
-                            title={book.title}
-                            authors={book.authors}
-                            imageLinks={book.imageLinks}
-                          />
-                        </li>
-                      ))}
-                    </ol>
+        { loading ? (
+          <div className="status-text">Fetching your books...</div>
+        ) : (
+          <div className="list-books-content">
+            { !!books.length ? (
+              <div>
+                { this.orderBooks(books, shelves).map(shelf => (
+                  <div key={shelf.shelf} className="bookshelf">
+                    <h2 className="bookshelf-title">
+                      { this.shelfTitle(shelf.shelf) }
+                    </h2>
+
+                    <div className="bookshelf-books">
+                      <ol className="books-grid">
+                        { shelf.books.map(book => (
+                          <li key={book.id}>
+                            <Book
+                              book={book}
+                              onUpdate={onUpdate}
+                            />
+                          </li>
+                        ))}
+                      </ol>
+                    </div>
                   </div>
-                </div>
-              ))
-              }
-            </div>
-          ) : (
-            <div>There are no books</div>
-          ) }
-        </div>
+                ))
+                }
+              </div>
+            ) : (
+              <div>There are no books</div>
+            ) }
+          </div>
+        )}
+
         <div className="cta-buttons">
           <Link to="/search">
             <button className="search">Search</button>
           </Link>
-          <button className="add" onClick={() => this.setState({ showSearchPage: true })}>Add a book</button>
         </div>
       </div>
     )

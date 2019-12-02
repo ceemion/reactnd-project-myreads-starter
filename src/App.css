@@ -10,6 +10,12 @@ body, .app {
   background: white;
 }
 
+.status-text {
+  font-size: 0.8em;
+  margin: 20px auto;
+  text-align: center;
+}
+
 /* main page */
 
 .list-books-title {

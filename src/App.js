@@ -8,6 +8,7 @@ import Search from './components/Search'
 class BooksApp extends React.Component {
   state = {
     loading: true,
+    searching: false,
     books: [],
     searchResult: []
   }
@@ -22,10 +23,15 @@ class BooksApp extends React.Component {
   }
 
   searchBooks = query => {
+    this.setState(() => ({
+      searching: true
+    }))
+
     BooksAPI.search(query).then(result => {
       console.log(result)
       this.setState(() => ({
-        searchResult: result
+        searchResult: result,
+        searching: false
       }))
     })
   }
@@ -51,6 +57,7 @@ class BooksApp extends React.Component {
           <Route path="/search" render={( {history} ) => (
             <Search
               history={history}
+              searching={this.state.searching}
               result={this.state.searchResult}
               onSearch={this.searchBooks}
               onUpdate={this.updateBook}

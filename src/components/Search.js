@@ -5,6 +5,7 @@ import Book from './Book'
 class Search extends Component {
   static propTypes = {
     history: PropTypes.object.isRequired,
+    searching: PropTypes.bool.isRequired,
     result: PropTypes.array.isRequired,
     onSearch: PropTypes.func.isRequired,
     onUpdate: PropTypes.func.isRequired
@@ -19,7 +20,7 @@ class Search extends Component {
   }
 
   render() {
-    const { history, result, onUpdate } = this.props
+    const { history, searching, result, onUpdate } = this.props
 
     return (
       <div className="search-books">
@@ -39,16 +40,20 @@ class Search extends Component {
           </div>
         </div>
         <div className="search-books-results">
-          <ol className="books-grid">
-            { result && !!result.length && result.map(book => (
-              <li key={book.id}>
-                <Book
-                  book={book}
-                  onUpdate={onUpdate}
-                />
-              </li>
-            )) }
-          </ol>
+          { searching ? (
+            <div className="status-text">Searching...</div>
+          ) : (
+            <ol className="books-grid">
+              { result && !!result.length && result.map(book => (
+                <li key={book.id}>
+                  <Book
+                    book={book}
+                    onUpdate={onUpdate}
+                  />
+                </li>
+              )) }
+            </ol>
+          )}
         </div>
       </div>
     )
