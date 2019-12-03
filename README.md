@@ -1,45 +1,57 @@
 # MyReads Project
 
-This is the starter template for the final assessment project for Udacity's React Fundamentals course. The goal of this template is to save you time by providing a static example of the CSS and HTML markup that may be used, but without any of the React code that is needed to complete the project. If you choose to start with this template, your job will be to add interactivity to the app by refactoring the static code in this template.
+This is a bookshelf app that allows you to search, select and categorize books you have read, are currently reading, or want to read. This application was built using React and uses an API server and client library to persist information as you interact with the application.
 
-Of course, you are free to start this project from scratch if you wish! Just be sure to use [Create React App](https://github.com/facebookincubator/create-react-app) to bootstrap the project.
+### Requirements
+* Node JS `11.14.0`
+* NPM `6.13.1`
+* Yarn `1.15.2`
 
-## TL;DR
+## Getting Started
+This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app) and built with React 16.6.3.
 
-To get started developing right away:
+## Setup
+### Install dependencies
+`npm install` or `yarn install`
 
-* install all project dependencies with `npm install`
-* start the development server with `npm start`
+### Run the app locally
+`npm start` or `yarn start` <br>
 
-## What You're Getting
-```bash
-├── CONTRIBUTING.md
-├── README.md - This file.
-├── SEARCH_TERMS.md # The whitelisted short collection of available search terms for you to use with your app.
-├── package.json # npm package manager file. It's unlikely that you'll need to modify this.
-├── public
-│   ├── favicon.ico # React Icon, You may change if you wish.
-│   └── index.html # DO NOT MODIFY
-└── src
-    ├── App.css # Styles for your app. Feel free to customize this as you desire.
-    ├── App.js # This is the root of your app. Contains static HTML right now.
-    ├── App.test.js # Used for testing. Provided with Create React App. Testing is encouraged, but not required.
-    ├── BooksAPI.js # A JavaScript API for the provided Udacity backend. Instructions for the methods are below.
-    ├── icons # Helpful images for your app. Use at your discretion.
-    │   ├── add.svg
-    │   ├── arrow-back.svg
-    │   └── arrow-drop-down.svg
-    ├── index.css # Global styles. You probably won't need to change anything here.
-    └── index.js # You should not need to modify this file. It is used for DOM rendering only.
-```
+Open [http://localhost:3000](http://localhost:3000/) to view it in the browser.
 
-Remember that good React design practice is to create new JS files for each component and use import/require statements to include them where they are needed.
+The page will fetch and display all books in your shelf.
 
-## Client
+Visit http://localhost:3000/search to search for books and add to MyReads shelf
 
-After starting the development server, visit http://localhost:3000/. All your books are listed.
+## Functionalities
+##### A. List and Categorize Books
+All your books are listed by categories on the homepage when you visit http://localhost:3000/. You can click the dropdown arrow on each book to move between categories. Categories currently supported are:
+* Currently Reading
+* Want to Read
+* Read
 
-Visit http://localhost:3000/search to search for books and add to MyReads
+Selecting "None" removes a book from your bookshelf. You can re-add it on the search page.
+
+##### B. Search Books
+You can search for books when you visit http://localhost:3000/search or by clicking the search icon on the bottom right of the screen. You can move a book to your shelf by selecting a category from the dropdown arrow on the book.
+
+## Run Tests
+`npm test` or `yarn test` <br>
+Launches the test runner in the interactive watch mode.
+See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+
+## Build for Production
+`npm run build` or `yarn build` <br>
+Builds the app for production to the `build` folder.<br>
+It correctly bundles React in production mode and optimizes the build for the best performance.
+
+The build is minified and the filenames include the hashes.<br>
+Your app is ready to be deployed!
+
+`npm start` or `yarn start` <br>
+Open [http://localhost:5000](http://localhost:5000) to view this production build in the browser.
+
+See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
 
 ## Backend Server
 
