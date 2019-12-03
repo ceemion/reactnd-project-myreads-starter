@@ -45,14 +45,26 @@ class BooksApp extends React.Component {
             searching: false
           }))
         } else {
-          this.setState(() => ({
-            searchResult: result,
+          this.setState((currentState) => ({
+            searchResult: this.filterShelfState(result, currentState.books),
             searchError: '',
             searching: false
           }))
         }
       })
     }
+  }
+
+  filterShelfState = (result, books) => {
+    const bookExist = (result) => (book) => result.filter(r => r.id === book.id)
+
+    books.forEach(book => {
+      bookExist(result)(book).map(r => r.shelf = book.shelf)
+    })
+
+    result.map(r => !r.shelf && (r.shelf = 'none'))
+
+    return result
   }
 
   updateBook = (book, shelf) => {
